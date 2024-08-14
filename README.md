@@ -26,6 +26,6 @@ The `useUserConfigs` composable provides methods to manage user configurations s
 - `getConfigs()`: Retrieves all configurations from `localStorage`.
 - `isConfigActive(page: string, value: string)`: Checks if a given value is active for a specific page.
 
-## `App.vue`
+## App.vue
 
 I demonstrate how to use the `UserConfigButton.vue` component to manage user configurations within the `App.vue` component.
