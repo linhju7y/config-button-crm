@@ -3,8 +3,8 @@
     :src="client.src"
     :alt="client.alt"
     :class="[
-      'h-10 w-10 -mx-1.5 ring ring-white  rounded-full object-cover cursor-pointer',
-      { 'ring-blue-500': isActive },
+      'h-10 w-10 -mx-1.5 ring rounded-full object-cover cursor-pointer ring-blue-500',
+      isActive ? 'ring-blue' : 'ring-white',
     ]"
     @click="setSelectedClient"
   />
