@@ -1,0 +1,44 @@
+<template>
+  <div class="text-gray-500 mb-3">Khách hàng:</div>
+  <div class="flex gap-1 items-center flex-wrap">
+    <CustomClient :page="page" v-for="client in clients" :client="client" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+
+import CustomClient from "./CustomClient.vue";
+
+const { page } = defineProps<{
+  page: string;
+}>();
+
+const clients = ref([
+  {
+    id: "client_1",
+    src: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100",
+    alt: "Avatar 1",
+  },
+  {
+    id: "client_2",
+    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=687&h=687&q=80",
+    alt: "Avatar 2",
+  },
+  {
+    id: "client_3",
+    src: "https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=686&h=686&q=80",
+    alt: "Avatar 3",
+  },
+  {
+    id: "client_4",
+    src: "https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=1401&h=1401&q=80",
+    alt: "Avatar 4",
+  },
+  {
+    id: "client_5",
+    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=80",
+    alt: "Avatar 5",
+  },
+]);
+</script>
