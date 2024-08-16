@@ -43,12 +43,12 @@ const configurations = [
       },
     ],
   },
-  {
-    type: "color_picker",
-    properties: {
-      label: "Chọn màu",
-    },
-  },
+  // {
+  //   type: "color_picker",
+  //   properties: {
+  //     label: "Chọn màu",
+  //   },
+  // },
 ];
 
 const detailConfigurations = [
