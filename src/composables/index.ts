@@ -1,1 +1,1 @@
-export * from "./useUserConfigs";
+export * from "./useSettingGlobal";

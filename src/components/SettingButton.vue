@@ -14,18 +14,18 @@
     >
       <div>
         <h3 class="text font-semibold mb-2">{{ title }}</h3>
-        <div class="flex flex-wrap gap-4 max-w">
+        <div class="flex flex-wrap gap-6 max-w">
           <div class="w-full break-words">
             <slot name="custom_config" />
           </div>
 
-          <UserConfigTag
-            v-if="configItems?.length"
-            v-for="item in configItems"
-            :key="item.value"
-            :configItem="item"
-            :page="page"
-          />
+          <div v-for="(data, idx) in modelValue">
+            <component
+              :key="idx"
+              :is="componentTypes[data.type]"
+              v-model="data.properties"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -42,23 +42,34 @@ import {
   withDefaults,
 } from "vue";
 
-import { ConfigItem } from "../types";
-
 import SettingIcon from "./icons/SettingIcon.vue";
-import UserConfigTag from "./UserConfigTag.vue";
+
+import SettingChildTags from "./SettingChildTags.vue";
+import SettingChildAvatars from "./SettingChildAvatars.vue";
+import SettingChildColorPicker from "./SettingChildColorPicker.vue";
+
+import { useSettingGlobal } from "../composables";
 
 interface Props {
-  title: string;
-  page: string;
-  configItems?: ConfigItem[];
+  title?: string;
+  configurations?: any;
+  object: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: "Tuỳ chỉnh",
-  page: "customers",
+  key: "default",
 });
 
-const { title, page, configItems } = props;
+const { title, configurations, object } = props;
+
+const componentTypes: Record<string, any> = {
+  tags: SettingChildTags,
+  avatars: SettingChildAvatars,
+  color_picker: SettingChildColorPicker,
+};
+
+const modelValue = useSettingGlobal(object, configurations);
 
 const isPopoverVisible: Ref<boolean> = ref(false);
 const popoverContainer: Ref<HTMLElement | null> = ref(null);

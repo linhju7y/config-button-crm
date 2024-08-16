@@ -1,23 +1,69 @@
 <script setup lang="ts">
-import UserConfigButton from "./components/UserConfigButton.vue";
-import CustomSelectClients from "./components/CustomSelectClients.vue";
-import { ConfigItem } from "./types";
+import SettingButton from "./components/SettingButton.vue";
 
-const configItems: ConfigItem[] = [
-  { label: "Ẩn email", value: "email" },
-  { label: "Ẩn sđt", value: "phone" },
-  { label: "Ẩn Tên người dùng", value: "time" },
-  { label: "Ẩn Địa chỉ", value: "address" },
+const configurations = [
+  {
+    type: "tags",
+    properties: [
+      {
+        label: "Ẩn email",
+        field: "email",
+      },
+      {
+        label: "Ẩn sđt",
+        field: "phone",
+      },
+      {
+        label: "Ẩn Tên người dùng",
+        field: "time",
+      },
+      {
+        label: "Ẩn Địa chỉ",
+        field: "address",
+      },
+    ],
+  },
+  {
+    type: "avatars",
+    properties: [
+      {
+        src: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=687&h=687&q=80",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=686&h=686&q=80",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=1401&h=1401&q=80",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=80",
+      },
+    ],
+  },
+  {
+    type: "color_picker",
+    properties: {
+      label: "Chọn màu",
+    },
+  },
 ];
 
-const configToShow: ConfigItem[] = [
-  { label: "Hiển thị email", value: "email" },
-  { label: "Hiển thị sđt", value: "phone" },
-  { label: "Hiển thị Tên người dùng", value: "username" },
-  { label: "Hiển thị Địa chỉ", value: "address" },
-  { label: "Hiển thị Ngày sinh", value: "dob" },
-  { label: "Hiển thị Giới tính", value: "gender" },
-  { label: "Hiển thị Quốc tịch", value: "nationality" },
+const detailConfigurations = [
+  {
+    type: "tags",
+    properties: [
+      { label: "Hiển thị email", field: "email" },
+      { label: "Hiển thị sđt", field: "phone" },
+      { label: "Hiển thị Tên người dùng", field: "username" },
+      { label: "Hiển thị Địa chỉ", field: "address" },
+      { label: "Hiển thị Ngày sinh", field: "dob" },
+      { label: "Hiển thị Giới tính", field: "gender" },
+      { label: "Hiển thị Quốc tịch", field: "nationality" },
+    ],
+  },
 ];
 </script>
 
@@ -25,19 +71,11 @@ const configToShow: ConfigItem[] = [
   <div class="container mx-auto p-4">
     <div class="text-center mb-4">Component Tùy Chỉnh Giao Diện</div>
     <div class="flex gap-4 justify-center">
-      <UserConfigButton :configItems="configItems" />
-
-      <UserConfigButton
-        title="Hiển thị thông tin"
-        :configItems="configToShow"
-        page="customer_detail"
+      <SettingButton :configurations="configurations" object="clients" />
+      <SettingButton
+        :configurations="detailConfigurations"
+        object="clients_detail"
       />
-
-      <UserConfigButton title="Bộ lọc" page="custom_page">
-        <template #custom_config>
-          <CustomSelectClients page="custom_select_clients" />
-        </template>
-      </UserConfigButton>
     </div>
   </div>
 </template>
